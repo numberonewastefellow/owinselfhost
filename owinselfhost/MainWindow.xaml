@@ -1,0 +1,27 @@
+﻿<Window x:Class="owinselfhost.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:owinselfhost"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock>Host</TextBlock>
+            <TextBox x:Name="txtHost">localhost</TextBox>
+            <TextBlock>port</TextBlock>
+            <TextBox x:Name="txtProt">9989</TextBox>
+            <Button x:Name="ButtonHost" Click="ButtonHost_OnClick">Start server</Button>
+            <TextBox x:Name="TextBlockStatus" AcceptsReturn="True" Height="80"></TextBox>
+
+            <TextBlock>client Host:port</TextBlock>
+            <TextBox x:Name="txtHostClinet">localhost:9989/api/values</TextBox>
+            
+            <Button x:Name="ButtonText" Click="ButtonText_OnClick">test endpint server</Button>
+            <TextBox x:Name="txtAddiitonalHost">additonhost:port</TextBox>
+            <Button x:Name="additionalHOstProt" Click="AdditionalHOstProt_OnClick">Add Additionalhost </Button>
+            <Button x:Name="BTNsHOomeOptions" Click="BTNsHOomeOptions_OnClick"> showme options</Button>
+        </StackPanel>
+    </Grid>
+</Window>
