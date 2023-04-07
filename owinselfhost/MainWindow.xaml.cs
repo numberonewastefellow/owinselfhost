@@ -19,6 +19,7 @@ using Owin;
 using System.Net.Http;
 using Microsoft.Owin.Cors;
 using Newtonsoft.Json;
+using ReverseProxyEg;
 
 namespace owinselfhost
 {
@@ -28,30 +29,43 @@ namespace owinselfhost
     public partial class MainWindow : Window
     {
         private string baseAddress;
-
+        SimpleFileLogger logger = new SimpleFileLogger("mylog.txt");
+        
         public MainWindow()
         {
             InitializeComponent();
+            logger.Log("initi");
         }
         StartOptions options = new StartOptions();
         private void ButtonHost_OnClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                baseAddress = "http://"+txtHost.Text.Trim().ToLower() + ":" + txtProt.Text.Trim();
+                baseAddress = "http://"+txtHost.Text.Trim().ToLower() + ":" + txtProt.Text.Trim()+"/";
                 //var options = new StartOptions("http://*:"+ txtProt.Text.Trim())
                 //{
                 //    ServerFactory = "Microsoft.Owin.Host.HttpListener"
                 //};
 
-                options.Urls.Add($"http://localhost:{txtProt.Text.Trim()}");
-                options.Urls.Add($"http://127.0.0.1:{txtProt.Text.Trim()}");
-                options.Urls.Add($"http://{Environment.MachineName}:{txtProt.Text.Trim()}" );
+                //options.Urls.Add($"http://localhost:{txtProt.Text.Trim()}");
+                //options.Urls.Add($"http://127.0.0.1:{txtProt.Text.Trim()}");
+                //options.Urls.Add($"http://{Environment.MachineName}:{txtProt.Text.Trim()}" );
 
 
-                WebApp.Start<MilkyWebServerStartup>(options: options);
+                //WebApp.Start<MilkyWebServerStartup>(options: options);
                 //web = WebApp.Start<MilkyWebServerStartup>(url: baseAddress);
-                TextBlockStatus.Text = "STARETED";
+                // baseAddress = "http://+:9089/";
+                web=WebApp.Start<MilkyWebServerStartup>(baseAddress);
+                 
+               
+                var port = Convert.ToInt32(txtProt.Text.Trim());
+                Task.Run(() =>
+                {
+                    SimpleProxy proxy = new SimpleProxy(port + 1, "127.0.0.1", port, logger);
+                    proxy.Start();
+                });
+                
+                TextBlockStatus.Text = "STARETED at" + baseAddress;
                 foreach (var startOption in options.Urls)
                 {
                     TextBlockStatus.Text += Environment.NewLine + startOption;
@@ -74,6 +88,8 @@ namespace owinselfhost
                 
                 using HttpClient client = new HttpClient();
                 var url = txtHostClinet.Text.Trim();
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("MilkyServerAuthorization", "saha/sarvani");
                 var response = client.GetAsync(url).Result;
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 TextBlockStatus.Text = responseString + DateTime.Now.Ticks;          

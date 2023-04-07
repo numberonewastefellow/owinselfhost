@@ -128,5 +128,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReverseProxyEg\ReverseProxyEg.csproj">
+      <Project>{68DF8A47-80CE-4B91-969E-F3A08BA39616}</Project>
+      <Name>ReverseProxyEg</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

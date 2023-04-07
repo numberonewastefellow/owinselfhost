@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "owinselfhost", "owinselfhost\owinselfhost.csproj", "{3922CCB5-F53C-49C8-B303-834B4ECE635F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseProxyEg", "ReverseProxyEg\ReverseProxyEg.csproj", "{68DF8A47-80CE-4B91-969E-F3A08BA39616}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3922CCB5-F53C-49C8-B303-834B4ECE635F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3922CCB5-F53C-49C8-B303-834B4ECE635F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3922CCB5-F53C-49C8-B303-834B4ECE635F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DF8A47-80CE-4B91-969E-F3A08BA39616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DF8A47-80CE-4B91-969E-F3A08BA39616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DF8A47-80CE-4B91-969E-F3A08BA39616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DF8A47-80CE-4B91-969E-F3A08BA39616}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
